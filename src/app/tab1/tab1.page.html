@@ -4,14 +4,28 @@
       Tab 1
     </ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header >
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+<ion-content>
+  <ion-list padding>
+    <ion-button expand="block" (click)="startScanning()">scan</ion-button>
+    <ion-list-header>
+      Paired Devices
+    </ion-list-header>
+    <ion-item *ngFor="let device of pairedDevices">
+      {{device.name}}
+    </ion-item>
+    <ion-button expand="block" (click)="disconnect()">Disconnect</ion-button>
+    <ion-list-header>
+      availlable Devices
+    </ion-list-header>
+    <ion-item *ngFor='let device of unpairedDevices'>
+      <span (click)="selectDevice(device.id)">
+        {{device.name }}
+      </span>
+    </ion-item>
+    <ion-spinner name="crescent" *ngIf="gettingDevices"></ion-spinner>
+    <ion-button expand="block" (click)="available()">available</ion-button>
+  </ion-list>
+  <p>{{d}}</p>
 </ion-content>
